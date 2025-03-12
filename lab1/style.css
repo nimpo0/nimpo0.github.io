@@ -208,7 +208,7 @@ nav a:hover {
 }
 
 #about .container {
-    background-image: url('cars/fon.jpg'); 
+    background-image: url('./cars/fon.jpg'); 
     background-size: cover;
     background-position: center;
     color: white;
