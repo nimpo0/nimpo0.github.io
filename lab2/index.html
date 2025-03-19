@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оренда Авто</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Оренда Авто</h1>
+        <nav>
+            <ul>
+                <li><a href="#cars">Автомобілі</a></li>
+                <li><a href="#bookings">Мої бронювання</a></li>
+                <li><a href="#about">Про нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="cars-section">
+        <h2>Наш автопарк</h2>
+        <div id="cars" class="grid-container"></div>
+    </section>
+
+    <section id="bookings">
+        <div class="container">
+            <h2>Мої бронювання</h2>
+            <div id="booking-list"></div>
+        </div>
+    </section>
+
+    <button id="toggle-about" class="primary-toggle-btn">Сховати "Про нас"</button>
+
+    <section id="about">
+        <div class="container">
+            <h2>Про нас</h2>
+            <p>Наша компанія спеціалізується на оренді автомобілів для будь-яких потреб. Ми пропонуємо широкий вибір сучасних та надійних авто, які відповідають високим стандартам якості та безпеки. Наш автопарк складається з різноманітних моделей — від економ класу до преміум класу, щоб задовольнити різні запити наших клієнтів. Усі автомобілі регулярно проходять технічний огляд і обслуговування, що гарантує їхню безпеку та комфорт під час поїздок.</p>
+            <p>Ми прагнемо забезпечити наших клієнтів найкращим сервісом, тому ми пропонуємо зручні умови оренди, гнучкі тарифи та оперативну підтримку. Незалежно від того, чи вам потрібен автомобіль для подорожі, бізнесу чи святкової події — ми завжди готові допомогти знайти ідеальний варіант.</p>
+            <p>Контакти: <a href="tel:+380123456789">+380123456789</a></p>
+            <div class="map">
+                <h3>Карта офісу</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.6509652730647!2d23.999493280430226!3d49.8440546642714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add9bab2783e1%3A0x432c5b328c28e410!2z0LLRg9C70LjRhtGPINCv0YHQvdCwLCAxNiwg0JvRjNCy0ZbQsiwg0JvRjNCy0ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA3OTAwMA!5e0!3m2!1suk!2sua!4v1741452067455!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Оренда Авто</p>
+            <p>Ясна вулиця 16, Львів, Львівський район</p>
+            <p><a href="tel:+380123456789">+380123456789</a></p>
+            <p><a href="mailto:orendaautolviv@gmail.com">orendaautolviv@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const carsSection = document.getElementById('cars');
+        const toggleBtn = document.getElementById('toggle-about');
+        const aboutSection = document.getElementById('about');
+
+        const carsArray = [
+            { id: 'bmwx5', name: 'BMW X5', img: 'cars/bmwx5.jpg', transmission: 'Автомат', available: 5, price: '$120/доба' },
+            { id: 'audia6', name: 'Audi A6', img: 'cars/audia6.jpg', transmission: 'Автомат', available: 3, price: '$70/доба' },
+            { id: 'fordfocus', name: 'Ford Focus', img: 'cars/fordfocus.jpg', transmission: 'Механіка', available: 0, price: '$35/доба' },
+            { id: 'teslam3', name: 'Tesla Model 3', img: 'cars/teslam3.jpg', transmission: 'Автомат', available: 0, price: '$150/доба' },
+            { id: 'mercedesc', name: 'Mercedes C-Class', img: 'cars/mercedesc.jpg', transmission: 'Автомат', available: 4, price: '$90/доба' },
+            { id: 'toyotacamry', name: 'Toyota Camry', img: 'cars/toyotacamry.jpg', transmission: 'Автомат', available: 6, price: '$65/доба' },
+            { id: 'hondacrv', name: 'Honda CR-V', img: 'cars/hondacrv.jpg', transmission: 'Автомат', available: 2, price: '$80/доба' }
+        ];
+
+        let i = 0;
+        while (i < carsArray.length) {
+            const car = carsArray[i];
+            const card = document.createElement('div');
+            card.className = 'car-card';
+            if (car.available === 0) card.classList.add('unavailable');
+
+            card.innerHTML = `
+                <img src="${car.img}" alt="${car.name}">
+                <h3>${car.name}</h3>
+                <p class="car-details">Трансмісія: ${car.transmission} | Доступно: ${car.available}</p>
+                <p class="car-price">${car.price}</p>
+                ${car.available > 0 ? `<button class="details-btn" data-car="${car.id}">Забронювати</button>` : `<button class="disabled-btn" disabled>Недоступно</button>`}
+            `;
+            carsSection.appendChild(card);
+            i++;
+        }
+
+        const buttons = document.querySelectorAll('.details-btn');
+        for (let i = 0; i < buttons.length; i++) {
+            const btn = buttons[i];
+            btn.addEventListener('click', () => {
+                const carId = btn.dataset.car;
+                localStorage.setItem('selectedCar', carId);
+                window.location.href = 'car.html';
+            });
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            if (aboutSection.style.display == 'none') {
+                aboutSection.style.display = 'block';
+                toggleBtn.textContent = 'Сховати "Про нас"';
+            } else {
+                aboutSection.style.display = 'none';
+                toggleBtn.textContent = 'Показати "Про нас"';
+            }
+        });
+
+        const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+        const bookingList = document.getElementById('booking-list');
+
+        if (bookings.length === 0) {
+            bookingList.innerHTML = '<p>Наразі немає бронювань.</p>';
+        } else {
+            for (let i = 0; i < bookings.length; i++) {
+                const booking = bookings[i];
+                const card = document.createElement('div');
+                card.className = 'booking-card';
+                card.innerHTML = `
+                    <img src="cars/${booking.carId}.jpg" alt="${booking.carId}">
+                    <div class="booking-details">
+                        <h3>${formatCarName(booking.carId)}</h3>
+                        <p><strong>Дати:</strong> ${formatDate(booking.start)} - ${formatDate(booking.end)}</p>
+                        <p><strong>Кількість авто:</strong> ${booking.quantity}</p>
+                        <p><strong>Стан:</strong> Бронювання підтверджено!</p>
+                        <button class="cancel-btn" data-index="${i}">Скасувати бронювання</button>
+                    </div>
+                `;
+                bookingList.appendChild(card);
+            }
+        }
+
+        function formatCarName(id) {
+            const names = {
+                bmwx5: 'BMW X5',
+                audia6: 'Audi A6',
+                fordfocus: 'Ford Focus',
+                teslam3: 'Tesla Model 3',
+                mercedesc: 'Mercedes C-Class',
+                toyotacamry: 'Toyota Camry',
+                hondacrv: 'Honda CR-V'
+            };
+            return names[id] || id;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const [yyyy, mm, dd] = dateStr.split('-');
+            return `${dd}.${mm}.${yyyy}`;
+        }
+
+        const cancelButtons = document.querySelectorAll('.cancel-btn');
+        for (let i = 0; i < cancelButtons.length; i++) {
+            const btn = cancelButtons[i];
+            btn.addEventListener('click', () => {
+                const idx = btn.dataset.index;
+                bookings.splice(idx, 1);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+                window.location.reload();
+            });
+        }
+    </script>
+</body>
+</html>
+

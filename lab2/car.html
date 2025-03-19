@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Деталі авто</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .car-details-container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .car-details-container img {
+            width: 350px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .car-info {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .car-info h2 {
+            color: #1e3a5f;
+        }
+
+        .car-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        #confirm-btn {
+            background: #1e3a5f;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        #confirm-btn:hover {
+            background: #14253d;
+            transform: scale(1.05);
+        }
+
+        .calendar-section {
+            margin-top: 20px;
+        }
+
+        .calendar-section input, .calendar-section select {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .reviews-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        #reviews-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .review-item {
+            background: #f9f9f9;
+            padding: 10px;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        #review-form {
+            margin-top: 20px;
+        }
+
+        #user-name, #user-comment {
+            width: 60%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background: #1e3a5f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            }
+
+        button[type="submit"]:hover {
+            background: #14253d;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Деталі автомобіля</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#cars">Автомобілі</a></li>
+                <li><a href="index.html#bookings">Мої бронювання</a></li>
+                <li><a href="index.html#about">Про нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container">
+        <div class="car-details-container" id="car-details"></div>
+        <div class="calendar-section">
+            <h3>Виберіть дати оренди:</h3>
+            <label>Дата початку:</label>
+            <input type="date" id="start-date">
+            <label>Дата закінчення:</label>
+            <input type="date" id="end-date">
+            <label>Кількість авто:</label>
+            <select id="car-quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <button id="confirm-btn">Підтвердити бронювання</button>
+    </section>
+
+    <section class="reviews-section">
+        <h3>Додайте коментар</h3>
+        <form id="review-form">
+            <input type="text" id="user-name" placeholder="Ваше ім'я" required>
+            <textarea id="user-comment" placeholder="Ваш відгук" required></textarea>
+            <button type="submit">Додати відгук</button>
+        </form>
+
+        <h3>Відгуки користувачів</h3>
+        <div id="reviews-list"></div> 
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Оренда Авто</p>
+        </div>
+    </footer>
+
+    <script>
+        const carId = localStorage.getItem('selectedCar');
+
+        const carData = {
+            bmwx5: { name: 'BMW X5', img: 'cars/bmwx5.jpg', transmission: 'Автомат', power: '340 к.с.', fuel: 'Бензин', price: '$120/доба' },
+            audia6: { name: 'Audi A6', img: 'cars/audia6.jpg', transmission: 'Автомат', power: '245 к.с.', fuel: 'Дизель', price: '$70/доба' },
+            fordfocus: { name: 'Ford Focus', img: 'cars/fordfocus.jpg', transmission: 'Механіка', power: '150 к.с.', fuel: 'Бензин', price: '$35/доба' },
+            teslam3: { name: 'Tesla Model 3', img: 'cars/teslam3.jpg', transmission: 'Автомат', power: '283 к.с.', fuel: 'Електро', price: '$150/доба' },
+            mercedesc: { name: 'Mercedes C-Class', img: 'cars/mercedesc.jpg', transmission: 'Автомат', power: '204 к.с.', fuel: 'Бензин', price: '$90/доба' },
+            toyotacamry: { name: 'Toyota Camry', img: 'cars/toyotacamry.jpg', transmission: 'Автомат', power: '181 к.с.', fuel: 'Бензин', price: '$65/доба' },
+            hondacrv: { name: 'Honda CR-V', img: 'cars/hondacrv.jpg', transmission: 'Автомат', power: '193 к.с.', fuel: 'Бензин', price: '$80/доба' }
+        };
+
+        const car = carData[carId];
+        const carDetails = document.getElementById('car-details');
+
+        if (car) {
+            carDetails.innerHTML = `
+                <img src="${car.img}" alt="${car.name}">
+                <div class="car-info">
+                    <h2>${car.name}</h2>
+                    <p><strong>Трансмісія:</strong> ${car.transmission}</p>
+                    <p><strong>Потужність:</strong> ${car.power}</p>
+                    <p><strong>Тип палива:</strong> ${car.fuel}</p>
+                    <p><strong>Ціна:</strong> ${car.price}</p>
+                </div>
+            `;
+        } else {
+            carDetails.innerHTML = '<p>Автомобіль не знайдено!</p>';
+        }
+
+        const startInput = document.getElementById('start-date');
+        const endInput = document.getElementById('end-date');
+
+        startInput.addEventListener('change', () => {
+            endInput.min = startInput.value;
+            if (endInput.value < startInput.value) {
+                endInput.value = '';
+            }
+        });
+
+        const today = new Date().toISOString().split('T')[0];
+        startInput.min = today;
+
+        document.getElementById('confirm-btn').addEventListener('click', () => {
+            const startDate = startInput.value;
+            const endDate = endInput.value;
+            const qty = document.getElementById('car-quantity').value;
+
+            if (!startDate || !endDate) {
+                alert('Будь ласка, оберіть дати оренди');
+                return;
+            }
+
+            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push({ carId: carId, start: startDate, end: endDate, quantity: qty });
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            alert('Авто додано до бронювання!');
+            window.location.href = 'index.html#bookings';
+        });
+
+        document.getElementById('review-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('user-name').value;
+            const comment = document.getElementById('user-comment').value;
+            const reviewsList = document.getElementById('reviews-list');
+            
+            if (name === '' || comment === '') {
+                alert('Будь ласка, заповніть усі поля!');
+                return;
+            }
+            
+            const reviewItem = document.createElement('div');
+            reviewItem.classList.add('review-item');
+            reviewItem.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+            reviewsList.appendChild(reviewItem);
+            
+            document.getElementById('review-form').reset();
+        });
+    </script>
+</body>
+</html>
