@@ -208,7 +208,7 @@ nav a:hover {
 }
 
 #about .container {
-    background-image: url('./cars/fon.JPG'); 
+    background-image: url('cars/fon.JPG'); 
     background-size: cover;
     background-position: center;
     color: white;
@@ -249,7 +249,7 @@ footer {
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) {    
     nav ul {
         flex-direction: row;
         align-items: center;
