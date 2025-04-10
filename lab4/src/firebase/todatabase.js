@@ -1,6 +1,6 @@
 import { setDoc, doc } from 'firebase/firestore';
 import { useEffect } from 'react';
-import { firestoreDB } from './firebaseConfig';  // Імпортуєте firestoreDB, який вже ініціалізований
+import { firestoreDB } from './firebaseConfig';
 
 const carsArray = [
   { id: 'bmwx5', name: 'BMW X5', img: '/cars/bmwx5.jpg', transmission: 'Автомат', available: 5, price: 120, power: '340 к.с.', fuel: 'Бензин' },
@@ -16,7 +16,7 @@ const UploadCarsToFirestore = () => {
   useEffect(() => {
     carsArray.forEach(async (car) => {
       try {
-        await setDoc(doc(firestoreDB, 'cars', car.id), car);  // Використовуємо firestoreDB
+        await setDoc(doc(firestoreDB, 'cars', car.id), car); 
       } catch (err) {
         console.error('Помилка додавання:', err);
       }
