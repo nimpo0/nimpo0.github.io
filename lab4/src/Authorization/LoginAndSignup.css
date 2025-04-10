@@ -1,0 +1,93 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: rgb(128, 150, 183);
+    padding: 30px;
+    border-radius: 10px;
+    width: 500px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px; 
+    background: none;
+    border: 2px solid #333; 
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px; 
+  }
+  
+  h5 {
+    font-size: 34px;
+    color: #ffffff; 
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 3.5px 3.5px 0 #1e3a5f, -1px -1px 0 #1e3a5f, 1px -1px 0 #1e3a5f, -1px 1px 0 #1e3a5f;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 90%;
+    padding: 10px;
+    border: 2px solid #1e3a5f;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 1px -12px;
+  }
+  
+  .submit-btn {
+    background: #1e3a5f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 35%;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #14253d;
+  }
+  
+  .switch-text {
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .switch-text span {
+    color: #1e3a5f;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
