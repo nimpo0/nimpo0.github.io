@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://orenda-avto.netlify.app/',
+  origin: 'https://orenda-avto.netlify.app',
 }));
 
 app.post('/register', async (req, res) => {
@@ -61,6 +61,13 @@ app.get('/api/getUserData', authenticateToken, async (req, res) => {
     console.error('Помилка при отриманні користувача:', error);
     return res.status(500).json({ message: 'Помилка при отриманні користувача' });
   }
+});
+
+const buildPath = path.join(__dirname, './lab5/build');
+app.use(express.static(buildPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
