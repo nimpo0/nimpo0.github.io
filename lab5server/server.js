@@ -13,7 +13,7 @@ app.use(cors({
   origin: 'https://orenda-avto.netlify.app/',
 }));
 
-app.use(express.static(path.join(__dirname, '.\lab5\build')));
+app.use(express.static(path.join(__dirname, './lab5/build')));
 
 app.post('/register', async (req, res) => {
   const { email, password } = req.body;
@@ -71,5 +71,5 @@ app.listen(PORT, () => {
 });
 
 app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '.\lab5\build', 'index.html'));
+  res.sendFile(path.join(__dirname, './lab5/build', 'index.html'));
 });
