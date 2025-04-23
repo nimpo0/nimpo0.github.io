@@ -25,7 +25,7 @@ const BookingsList = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/api/bookings`, {
+        const response = await fetch(`https://orenda-avto-server.onrender.com/api/bookings`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -62,7 +62,7 @@ const BookingsList = () => {
     const token = localStorage.getItem('token');
   
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${bookingId}`, {
+      const response = await fetch(`https://orenda-avto-server.onrender.com/api/bookings/${bookingId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -76,7 +76,6 @@ const BookingsList = () => {
       setBookings(prev => prev.filter(booking => booking.id !== bookingId));
     } catch (error) {
       alert('Не вдалося скасувати бронювання.');
-      console.error('Помилка при скасуванні бронювання:', error);
     }
   };
   

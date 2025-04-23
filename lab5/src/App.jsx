@@ -8,7 +8,7 @@ import LoginAndSignup from './Authorization/LoginAndSignup';
 import ProtectedRoute from './Components/ProtectedRoute';
 import './App.css';
 
-const apiUrl = 'http://localhost:5000'; // Заміни на реальний серверний адрес
+const apiUrl = 'https://orenda-avto-server.onrender.com';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -17,11 +17,11 @@ const App = () => {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      console.log('Token:', token);
+      console.log('Токен:', token);
   
-      const res = await fetch('http://localhost:5000/profile', {
+      const res = await fetch(`${apiUrl}/profile`, {
         headers: {
-          Authorization: `Bearer ${token}`, // 👈 обов’язково
+          Authorization: `Bearer ${token}`, 
         },
       });
   
@@ -33,7 +33,7 @@ const App = () => {
       console.log('Профіль:', data);
   
       if (data) {
-        setUser(data);  // Оновлюємо стан користувача
+        setUser(data);
         console.log('Профіль оновлено:', data);
       }
   
