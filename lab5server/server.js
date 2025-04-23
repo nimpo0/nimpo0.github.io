@@ -63,11 +63,11 @@ app.get('/api/getUserData', authenticateToken, async (req, res) => {
   }
 });
 
-const buildPath = path.join(__dirname, './lab5/build');
+const buildPath = path.join(__dirname, '../lab5/build');
 app.use(express.static(buildPath));
 
 app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../lab5/build/index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
