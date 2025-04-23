@@ -1,22 +1,20 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const { registerUser, loginUser, authenticateToken } = require('./auth'); // Імпортуємо функції
+const { registerUser, loginUser, authenticateToken } = require('./auth');
 const path = require('path');
-const { db } = require('./firebaseConfig'); // Підключаємо Firestore
+const { db } = require('./firebaseConfig');
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-// Встановлюємо CORS для дозволу запитів з React
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://orenda-avto.netlify.app/',
 }));
 
-app.use(express.static(path.join(__dirname, '../my-react-app/build')));
+app.use(express.static(path.join(__dirname, '.\lab5\build')));
 
-// 🔹 Реєстрація
 app.post('/register', async (req, res) => {
   const { email, password } = req.body;
 
@@ -28,7 +26,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// 🔹 Логін
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -40,7 +37,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// 🔹 Профіль (захищений маршрут)
 app.get('/profile', authenticateToken, (req, res) => {
   res.json({ uid: req.user.userId, email: req.user.email });
 });
@@ -65,16 +61,12 @@ app.get('/api/getUserData', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     console.error('Помилка при отриманні користувача:', error);
-    return res.status(500).json({ message: 'Внутрішня помилка сервера' });
+    return res.status(500).json({ message: 'Помилка при отриманні користувача' });
   }
 });
 
-// Запуск сервера
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../my-react-app/build', 'index.html'));
-});
