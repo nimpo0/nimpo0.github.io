@@ -6,33 +6,52 @@ import CompanyInfo from './Components/CompanyInfo';
 import CarDetails from './Components/CarDetails';
 import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import LoginAndSignup from './Authorization/LoginAndSignup';
-//import UploadCarsToFirestore from './todatabase';
 import './App.css';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [userToken, setUserToken] = useState(null);  // Додаємо стан для токену
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user); 
+        setUser(user);
       } else {
         setUser(null);
       }
     });
 
-    return () => unsubscribe();
+    unsubscribe();
   }, []);
+
+  const fetchCars = async () => {
+    if (!userToken) {
+      alert('Для доступу потрібно авторизуватися');
+      return;
+    }
+
+    const response = await fetch('http://localhost:5000/api/cars', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`,  // Додаємо токен
+      },
+    });
+
+    const data = await response.json();
+    // Далі обробка даних
+  };
 
   const handleSignOut = async () => {
     const auth = getAuth();
     try {
       await signOut(auth);
+      setUserToken(null);  // Очищаємо токен при виході
       alert('Ви успішно вийшли!');
     } catch (error) {
-      console.error('Помилка: ', error);
+      alert(`Помилка: ${error.message}`);
     }
   };
 
@@ -44,35 +63,35 @@ const App = () => {
     setIsModalOpen(false);
   };
 
-  const handleLogin = (email, password) => {
+  const handleLogin = async (email, password) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert('Ви успішно ввійшли!');
-        closeModal(); 
-      })
-      .catch(() => {
-        alert('Неправильний пароль або електронна пошта!');
-      });
+    try {
+      await signInWithEmailAndPassword(auth, email, password); 
+      const user = auth.currentUser;
+      const token = await user.getIdToken();  // Отримуємо токен
+      setUserToken(token);  // Зберігаємо токен в стані
+      alert('Ви успішно ввійшли!');
+      closeModal();
+    } catch (error) {
+      alert('Неправильний пароль або електронна пошта!');
+    }
   };
 
-  const handleSignUp = (email, password) => {
+  const handleSignUp = async (email, password) => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert('Ви успішно зареєструвались!');
-        closeModal();
-      })
-      .catch(() => {
-        alert('Пароль має складатись з мінімум 6 символів!');
-      });
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert('Ви успішно зареєструвались!');
+      closeModal();
+    } catch (error) {
+      alert('Пароль має складатись з мінімум 6 символів!');
+    }
   };
 
   return (
     <Router>
       <div className="App">
         <header>
-          {/*<UploadCarsToFirestore /> */}
           <h1>Оренда Авто</h1>
           <nav>
             <ul>
@@ -91,7 +110,7 @@ const App = () => {
                 </>
               ) : (
                 <li>
-                  <button id = "login" className="login-button" onClick={handleSignOut}>Вийти</button> 
+                  <button id="login" className="login-button" onClick={handleSignOut}>Вийти</button> 
                 </li>
               )}
             </ul>
