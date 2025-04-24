@@ -1,0 +1,524 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #bed7e9, #e0eaf3);
+  color: #333;
+}
+
+header {
+  background: #1e3a5f;
+  color: white;
+  padding: 20px 0px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  position: relative; 
+}
+
+header h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  gap: 30px;
+  list-style-type: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #cbd5e1;
+}
+
+.cars-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.cars-section h2 {
+  font-size: 32px;
+  color: #1e3a5f;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.grid-container.one-card {
+  display: flex;
+  justify-content: center;
+}
+
+.car-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 350px; 
+}
+
+.car-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.car-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.car-card h3 {
+  font-size: 24px;
+  margin: 15px 0;
+  color: #1e3a5f;
+}
+
+.car-details {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.car-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1e3a5f;
+  margin-bottom: 10px;
+}
+
+.car-card button {
+  background: #1e3a5f;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.car-card button:hover {
+  background: #14253d;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#bookings {
+  color: #fff;
+  padding: 30px 20px;
+}
+
+#bookings h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+#bookings .container {
+  background: linear-gradient(180deg, #4d6b92, #1e3a5f);
+  max-width: 1000px;
+  margin: 1px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.booking-card {
+  display: flex;
+  align-items: center;
+  background:  rgb(242, 241, 254);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 30px 500px;
+}
+
+.booking-card img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.booking-details h3 {
+  font-size: 22px;
+  color: #1e3a5f;
+  margin-bottom: 15px;
+}
+
+.booking-details p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.cancel-btn {
+  background: #3766a5;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #1e3a5f;
+}
+
+.primary-toggle-btn {
+  margin: 20px auto;
+  display: block;
+  padding: 10px 20px;
+  background: #1e3a5f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.primary-toggle-btn:hover {
+  background: #14253d;
+  transform: scale(1.05);
+}
+
+#about {
+  padding: 40px 20px;
+}
+
+#about h2 {
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#about p {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#about .container {
+  background-image: url('./fon.JPG'); 
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 60px 20px;
+  text-shadow: 6px 6px 8px #262253; 
+  max-width: 1100px
+}
+
+.map {
+  margin-top: 30px;
+}
+
+iframe {
+  border-radius: 10px;
+  border: none;
+}
+
+footer {
+  background: #1e3a5f;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+.footer-content a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
+
+.unavailable {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+.disabled-btn {
+  background: #ccc;
+  color: #666;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: not-allowed;
+  font-size: 16px;
+}
+
+.filters-container {
+  margin-bottom: 24px;
+  text-align: center;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.filters-container h3 {
+  color:#1e3a5f;
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.filters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.filter-select {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background-color: #ffffff;
+  color: #111827;
+  transition: border 0.2s;
+}
+
+.filter-select:hover {
+  border-color: #6b7280;
+}
+
+.reset-btn {
+  background-color: #e5e7eb;
+  color: #111827;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background-color: rgb(128, 150, 183);
+}
+
+.no-cars-text {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+  margin-top: 16px;
+}
+
+.cars-section h2 {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.filters-container {
+  background-color: #f9fafb;
+  padding: 16px;
+  border: 4px solid rgb(128, 150, 183);
+  border-radius: 8px;
+}
+
+.login-button {
+  background-color: #1e3a5f;
+  color: white;
+  padding: 10px 10px; 
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: auto;
+  max-width: 200px;
+}
+
+.login-button:hover {
+  background-color: #14253d;
+  transform: scale(1.05);
+}
+
+header nav ul li .login-button {
+  position: absolute;
+  top: 110px;
+  right: 20px;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+  }
+
+  .grid-container {
+      padding: 20px;
+  }
+
+  .cars-section h2 {
+      margin-top: 10px;
+  }
+
+  .car-card h3 {
+      font-size: 22px;
+  }
+
+  .car-price {
+      font-size: 18px;
+  }
+
+  .car-card button {
+      padding: 10px 15px;
+      font-size: 14px;
+  }
+
+  .container {
+      margin-bottom: 5px;
+  }
+
+  .container h2 {
+      font-size: 28px;
+  }
+
+  #bookings p {
+      font-size: 16px;
+  }
+
+  .booking-card {
+    margin: 20px 100px;
+  }
+
+  #about .container {
+      width: 100%;
+      max-width: 600px;
+  }
+
+  #about p {
+      font-size: 16px;
+  }
+
+  .map iframe {
+      width: 100%;  
+      height: 250px; 
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul {
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  nav a {
+      font-size: 16px;
+  }
+
+  .car-card {
+    width: 90%;
+    max-width: 300px;
+    margin: 0;
+  }
+
+  .cars-section h2 {
+      margin-top: 10px;
+  }
+
+  .car-card img {
+      height: 150px;
+  }
+
+  .car-card h3 {
+      font-size: 18px;
+  }
+
+  .car-card button {
+      padding: 10px 15px;
+      font-size: 14px;
+  }
+
+  .container h2 {
+      font-size: 24px;
+  }
+
+  .container p {
+      font-size: 14px;
+  }
+
+  .footer-content p {
+      font-size: 14px;
+  }
+
+  .footer-content a {
+      font-size: 14px;
+  }
+
+  #bookings p {
+      font-size: 16px;
+  }
+
+  .booking-card {
+    margin: 20px 15px;
+  }
+
+  #about .container {
+      width: 90%;
+      max-width: 300px;
+  }
+
+  #about p {
+      font-size: 16px;
+  }
+
+  .map iframe {
+      width: 100%;  
+      height: 250px;
+  }
+
+  .filters-container {
+    width: 300px;
+  }
+}
+
