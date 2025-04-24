@@ -59,9 +59,10 @@
     width: 90%;
     padding: 10px;
     border: 2px solid #1e3a5f;
+    box-sizing: border-box;
     border-radius: 5px;
     font-size: 16px;
-    margin: 1px -12px;
+    margin: 0;
   }
   
   .submit-btn {
@@ -93,7 +94,7 @@
   
   @media (max-width: 480px) {
     .modal-content {
-      width: 90%;
+      width: 80%;
       padding: 20px;
     }
   

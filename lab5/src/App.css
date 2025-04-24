@@ -157,7 +157,7 @@ nav a:hover {
 .booking-card {
   display: flex;
   align-items: center;
-  background:  #cbd5e1;
+  background:  rgb(186, 200, 220);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -493,7 +493,7 @@ header nav ul li .login-button {
   }
 
   .booking-card {
-    margin: 20px 5px;
+    margin: 20px 15px;
   }
 
   #about .container {
