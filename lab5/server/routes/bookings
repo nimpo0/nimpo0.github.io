@@ -96,20 +96,6 @@ router.delete('/:bookingId', authenticateToken, async (req, res) => {
       return res.status(404).json({ message: 'Бронювання не знайдено' });
     }
 
-    const bookingData = bookingSnap.data();
-    const carRef = db.collection('cars').doc(bookingData.carId);
-    const carSnap = await carRef.get();
-
-    if (!carSnap.exists) {
-      return res.status(404).json({ message: 'Автомобіль не знайдено' });
-    }
-
-    const carData = carSnap.data();
-
-    await carRef.update({
-      available: carData.available + bookingData.quantity,
-    });
-
     await bookingRef.delete();
 
     res.status(200).json({ message: 'Бронювання успішно скасовано' });
