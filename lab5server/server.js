@@ -63,13 +63,6 @@ app.get('/api/getUserData', authenticateToken, async (req, res) => {
   }
 });
 
-const buildPath = path.join(__dirname, 'nimpo0.github.io/lab5/build');
-app.use(express.static(buildPath));
-
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'nimpo0.github.io/lab5/build/index.html'));
-});
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
