@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #a8afe1, #d2cef7), linear-gradient(180deg, rgba(62, 9, 185, 0.2), rgba(57, 68, 114, 0.7));
+  background: linear-gradient(135deg, #bed7e9, #e0eaf3);
   color: #333;
 }
 
@@ -155,11 +155,10 @@ nav a:hover {
   border-radius: 10px;
 }
 
-
 .booking-card {
   display: flex;
   align-items: center;
-  background:  rgb(186, 200, 220);
+  background:  rgb(242, 241, 254);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
