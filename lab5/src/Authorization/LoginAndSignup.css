@@ -91,3 +91,30 @@
     text-decoration: underline;
   }
   
+  @media (max-width: 480px) {
+    .modal-content {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    h5 {
+      font-size: 26px;
+    }
+  
+    .submit-btn {
+      width: 100%;
+    }
+  
+    .input-group input {
+      width: 100%;
+      margin: 0;
+    }
+    .close-btn {
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      top: 5px;
+      right: 5px;
+    }
+  }
+  

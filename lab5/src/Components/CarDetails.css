@@ -65,40 +65,15 @@
   .car-btn:hover {
     background-color: #14253d;
   }
+
+  @media (max-width: 480px) {
+    .car-form input,
+    .car-form select {
+      width: 100%;
+    }
   
-  .review-section {
-    margin-top: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-  
-  .review-form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .review-form input,
-  .review-form textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .review-form button {
-    padding: 8px;
-    background-color: #1e3a5f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .review-form button:hover {
-    background-color: #14253d;
+    .car-form {
+      width: 100%;
+    }
   }
   

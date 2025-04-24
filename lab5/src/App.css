@@ -493,12 +493,12 @@ header nav ul li .login-button {
   }
 
   .booking-card {
-    margin: 20px 50px;
+    margin: 20px 5px;
   }
 
   #about .container {
-      width: 100%;
-      max-width: 350px;
+      width: 90%;
+      max-width: 300px;
   }
 
   #about p {
@@ -511,7 +511,7 @@ header nav ul li .login-button {
   }
 
   .filters-container {
-    width: 400px;
+    width: 300px;
   }
 }
 
